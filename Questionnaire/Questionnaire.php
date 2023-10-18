@@ -137,35 +137,35 @@ class Questionnaire
 
     public function FINISH() {
         $this->SESSION_STORE();
-        if($this->BranchingLogicDisabled()) {
-            foreach($this->forms as $form) {
-                foreach($form->questions as $question) {
-                    $sql = 'INSERT INTO embedded_responses (questionnaire, question, uid, response, apid) VALUES(';
-                    $sql.= "'" . $this->name . "', ";
-                    $sql.= "'" . $question->question . "', ";
-                    $sql.= "'" . $_SESSION['uid'] . "', ";
-                    $sql.= "'" . db_escape($this->db,$_SESSION[$this->name][$form->form_name][$question->question_name]). "', ";
-                    $sql.= "'" . $_SESSION['apid'] . "')";
-                    $result = mysqli_query($this->db, $sql);
-                    confirm_result_set($result);
-
-                }
-            }
-        }
-        else {
-            foreach ($_SESSION[$this->name]['path'] as $formPosition) {
-                foreach ($this->forms[$formPosition]->questions as $question) {
-                    $sql = 'INSERT INTO embedded_responses (questionnaire, question, uid, response, apid) VALUES(';
-                    $sql.= "'" . $this->name . "', ";
-                    $sql.= "'" . $question->question . "', ";
-                    $sql.= "'" . $_SESSION['uid'] . "', ";
-                    $sql.= "'" . db_escape($this->db,$_SESSION[$this->name][$this->forms[$formPosition]->form_name][$question->question_name]). "', ";
-                    $sql.= "'" . $_SESSION['apid'] . "')";
-                    $result = mysqli_query($this->db, $sql);
-                    confirm_result_set($result);
-                }
-            }
-        }
+//        if($this->BranchingLogicDisabled()) {
+//            foreach($this->forms as $form) {
+//                foreach($form->questions as $question) {
+//                    $sql = 'INSERT INTO embedded_responses (questionnaire, question, uid, response, apid) VALUES(';
+//                    $sql.= "'" . $this->name . "', ";
+//                    $sql.= "'" . $question->question . "', ";
+//                    $sql.= "'" . $_SESSION['uid'] . "', ";
+//                    $sql.= "'" . db_escape($this->db,$_SESSION[$this->name][$form->form_name][$question->question_name]). "', ";
+//                    $sql.= "'" . $_SESSION['apid'] . "')";
+//                    $result = mysqli_query($this->db, $sql);
+//                    confirm_result_set($result);
+//
+//                }
+//            }
+//        }
+//        else {
+//            foreach ($_SESSION[$this->name]['path'] as $formPosition) {
+//                foreach ($this->forms[$formPosition]->questions as $question) {
+//                    $sql = 'INSERT INTO embedded_responses (questionnaire, question, uid, response, apid) VALUES(';
+//                    $sql.= "'" . $this->name . "', ";
+//                    $sql.= "'" . $question->question . "', ";
+//                    $sql.= "'" . $_SESSION['uid'] . "', ";
+//                    $sql.= "'" . db_escape($this->db,$_SESSION[$this->name][$this->forms[$formPosition]->form_name][$question->question_name]). "', ";
+//                    $sql.= "'" . $_SESSION['apid'] . "')";
+//                    $result = mysqli_query($this->db, $sql);
+//                    confirm_result_set($result);
+//                }
+//            }
+//        }
         $_SESSION[$this->unlock] = 'Unlocked';
         redirect_to($this->next);
     }

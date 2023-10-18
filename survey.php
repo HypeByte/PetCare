@@ -17,21 +17,32 @@ $diagnosis = new Questionnaire('diagnosis',
 
     [
 
-        new Form('test',
+        new Form('petName',
             [
-                new RadioCheck('test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test'),
-                new TextBox('test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test'),
-                new Select('test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test'),
-                new Calendar('test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test')
+                    new TextBox("What is your pet's name?", "1", "TEXTBOX_DEFAULT")
+            ],
+            [
+                    new Node('petType', false)
             ]
+        ),
+
+        new Form( 'petType',
+            [
+                    new RadioCheck("Which of the following is your pet?", "1", "A Dog,A Cat", "RADIO_DEFAULT")
+            ],
+            [
+                    new Node(new DxTx('test', 'test'), false)
+            ]
+
+
         )
 
     ],
 
 
-    'diagnosis.php',
+    'diagnosis',
     $petcare_db,
-    'diagnosis');
+    'diagnosis.php');
 
 ?>
 
