@@ -1,3 +1,10 @@
+<?php
+
+    require_once 'private/init.php';
+
+
+?>
+
 <!DOCTYPE html lang="en">
 
 <head>
