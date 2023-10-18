@@ -44,3 +44,4 @@ function validate_registration($user_data) {
     return $errors;
 
 }
+

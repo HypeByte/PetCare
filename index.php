@@ -40,6 +40,12 @@
             font-size: 1.2rem;
         }
 
+        @media (min-width: 1700px) {
+            .error {
+                font-size: 1.5rem;
+            }
+        }
+
         @media (max-width: 765px) {
             #main {
                 width: 100% !important;

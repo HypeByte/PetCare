@@ -2,6 +2,16 @@
 
     require_once 'private/init.php';
 
+    $error = false;
+    if(is_post_request()) {
+        $login_success = login_user($_POST);
+        if($login_success) {
+            redirect_to('survey.php');
+        } else {
+            $error = true;
+        }
+    }
+
 ?>
 <!DOCTYPE html lang="en">
 
@@ -32,7 +42,7 @@
 
 <div class="container-responsive mt-5 ps-5 pe-5 pb-5"  id="main" style="background-color: rgb(12, 72, 102); margin: auto; border-radius: 20px;">
     <div class="h1 text-center text-light pt-3">PetCare Login</div>
-    <form action="index.php" method="POST" class="mt-3">
+    <form action="login.php" method="POST" class="mt-3">
 
         <div class="mb-3">
             <label class="form-label mt-2 text-light" for="username">Username</label>
@@ -50,6 +60,11 @@
             </div>
         </div>
 
+        <?php if($error) { ?>
+            <div class="text-center text-danger mb-3">
+                <h5>Invalid username or password</h5>
+            </div>
+        <?php } ?>
 
         <div class="text-center mb-3">
             <button class="btn-primary btn-lg">Login</button>
