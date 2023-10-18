@@ -10,6 +10,9 @@ const private_path = __DIR__ . '/';
 require_once private_path . 'database/db_credentials.php';
 require_once private_path . 'database/database.php';
 require_once private_path . 'server.php';
+require_once private_path . 'validate.php';
+require_once private_path . 'query.php';
+require_once private_path . 'util.php';
 
 $petcare_db = db_connect();
 

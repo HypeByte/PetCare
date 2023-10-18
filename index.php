@@ -2,6 +2,22 @@
 
     require_once 'private/init.php';
 
+    $errors = [
+        'username' => '',
+        'password' => '',
+        'confirm_password' => '',
+        'present' => false
+    ];
+
+    if(is_post_request()) {
+
+    $errors = register_user($_POST);
+    if(!$errors['present']) {
+        redirect_to('survey.php');
+    }
+
+    }
+
 
 ?>
 
@@ -20,11 +36,19 @@
             width: 50%;
         }
 
+        .error {
+            font-size: 1.2rem;
+        }
 
         @media (max-width: 765px) {
             #main {
                 width: 100% !important;
             }
+
+            .error {
+                font-size: 1rem;
+            }
+
         }
         
     </style>
@@ -39,24 +63,33 @@
             <div class="mb-3">
                 <label class="form-label mt-2 text-light" for="username">Username</label>
                 <div class="input-group input-group-lg">
-                    <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-person-circle"></i></span>
-                    <input type="text" class="form-control form-control-lg" id="username" name="username" placeholder="Enter username">
+                    <span <?php error_style_logo($errors, 'username'); ?> class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-person-circle"></i></span>
+                    <input <?php error_style_input($errors, 'username'); ?> type="text" class="form-control form-control-lg" id="username" name="username" placeholder="Enter username">
+                    <div class="text-danger error">
+                        <?php echo $errors['username']; ?>
+                    </div>
                 </div>
             </div>
 
             <div class="mb-3">
                 <label class="form-label mt-2 text-light" for="password">Create Password</label>
                 <div class="input-group input-group-lg">
-                    <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-asterisk"></i></span>
-                    <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Enter password">
+                    <span <?php error_style_logo($errors, 'password'); ?> class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-asterisk"></i></span>
+                    <input <?php error_style_input($errors, 'password'); ?> type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Enter password">
+                    <div class="text-danger error">
+                        <?php echo $errors['password']; ?>
+                    </div>
                 </div>
             </div>
 
             <div class="mb-3">
                 <label class="form-label mt-2 text-light" for="confirm_password">Confirm Password</label>
                 <div class="input-group input-group-lg">
-                    <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-asterisk"></i></span>
-                    <input type="password" class="form-control form-control-lg" id="confirm_password" name="confirm_password" placeholder="Retype your password">
+                    <span <?php error_style_logo($errors, 'confirm_password'); ?> class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-asterisk"></i></span>
+                    <input <?php error_style_input($errors, 'confirm_password'); ?> type="password" class="form-control form-control-lg" id="confirm_password" name="confirm_password" placeholder="Retype your password">
+                    <div class="text-danger error">
+                        <?php echo $errors['confirm_password']; ?>
+                    </div>
                 </div>
             </div>
 
