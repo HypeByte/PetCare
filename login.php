@@ -25,8 +25,8 @@
 
 <body style="background-image: url('private/assets/background2.jpg')">
 
-<div class="container-responsive mt-5 ps-5 pe-5 pb-5"  id="main" style="background-color: rgb(12, 72, 102); margin: auto; border-radius: 10px;">
-    <div class="h1 text-center text-light">PetCare Login</div>
+<div class="container-responsive mt-5 ps-5 pe-5 pb-5"  id="main" style="background-color: rgb(12, 72, 102); margin: auto; border-radius: 20px;">
+    <div class="h1 text-center text-light pt-3">PetCare Login</div>
     <form action="index.php" method="POST" class="mt-3">
 
         <div class="mb-3">
@@ -47,7 +47,7 @@
 
 
         <div class="text-center mb-3">
-            <button class="btn-primary btn-lg">Register</button>
+            <button class="btn-primary btn-lg">Login</button>
         </div>
 
         <div class="text-center">
@@ -57,12 +57,6 @@
     </form>
 </div>
 
-<footer id="footerpad">
-    <div class="container text-center h5" style="margin: auto;">
-        &copyAyush Moghe (email: amoghe314361@gmail.com) Congressional App Challenge Project<br><br>
-        PetCare: A web app that seeks to make veterinary medical care accessible to everyone in the world!
-
-</footer>
 
 </body>
 
