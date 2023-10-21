@@ -35,7 +35,7 @@ class RadioCheck extends Question
     {   if(!$memory or !isset($_SESSION[$memory[0]][$memory[1]][$memory[2]])) {
             $question_HTML = "<h5 class='fs-5 mb-2 mt-2'>" . $this->question . "</h5>";
             foreach ($this->options as $option) {
-                $question_HTML .= "<div class='form-check'>";
+                $question_HTML .= "<div class='form-check '>";
                 $question_HTML .= "<input class='form-check-input' type='radio' name='" . $this->question_name . "' value='" . $option . "' id='" . $option . "'>";
                 $question_HTML .= "<label class='form-check-label' for='" . $option . "'>" . $option . "</label>";
                 $question_HTML .= "</div>";

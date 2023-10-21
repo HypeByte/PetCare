@@ -238,35 +238,35 @@ class Questionnaire
 
     }
 
-    //Renders the current form and displays it
+    //Renders the current form on PetCare survey page and displays it
     public function render() {
         $this->forms[$this->position]->display($this->name);
         if($this->BranchingLogicDisabled()) {
             if($this->position == 0) {
                 echo '<div class="text-center mt-5">
-                        <input class="btn" style="background-color: mediumseagreen" type="submit" name="next" value="next">
+                        <input class="btn btn-lg" style="background-color: mediumseagreen" type="submit" name="next" value="next">
                     </div>';
             } elseif($this->position > 0 and $this->position < count($this->forms) - 1) {
                 echo '<div class="text-center mt-5">
-                        <input class="btn" style="background-color: mediumseagreen" type="submit" name="back" value="back">
-                        <input class="btn" style="background-color: mediumseagreen" type="submit" name="next" value="next">
+                        <input class="btn btn-lg" style="background-color: mediumseagreen" type="submit" name="back" value="back">
+                        <input class="btn btn-lg" style="background-color: mediumseagreen" type="submit" name="next" value="next">
                     </div>';
             } else {
                 echo ' <div class="text-center mt-5">
-                        <input class="btn" style="background-color: mediumseagreen" type="submit" name="back" value="back">
-                        <input class="btn" style="background-color: mediumseagreen" type="submit" name="finish" value="finish">
+                        <input class="btn btn-lg" style="background-color: mediumseagreen" type="submit" name="back" value="back">
+                        <input class="btn btn-lg" style="background-color: mediumseagreen" type="submit" name="finish" value="finish">
                     </div>';
             }
         } else {
 
             if($this->isOrigin()) {
                 echo '<div class="text-center mt-5">
-                        <input class="btn" style="background-color: mediumseagreen" type="submit" name="next" value="next">
+                        <input class="btn btn-lg" style="background-color: mediumseagreen" type="submit" name="next" value="next">
                     </div>';
             } else {
                 echo '<div class="text-center mt-5">
-                        <input class="btn" style="background-color: mediumseagreen" type="submit" name="back" value="back">
-                        <input class="btn" style="background-color: mediumseagreen" type="submit" name="next" value="next">
+                        <input class="btn btn-lg" style="background-color: mediumseagreen" type="submit" name="back" value="back">
+                        <input class="btn btn-lg" style="background-color: mediumseagreen" type="submit" name="next" value="next">
                     </div>';
             }
 
