@@ -7,9 +7,7 @@ class Questionnaire
     //Used to allocate memory into session storage
     public $name;
     public $forms;
-    public $unlock;
     public $db;
-    public $next;
     public $position;
 
     //Checks if the current form has branching logic compatibility disabled
@@ -137,49 +135,50 @@ class Questionnaire
 
     public function FINISH() {
         $this->SESSION_STORE();
-//        if($this->BranchingLogicDisabled()) {
-//            foreach($this->forms as $form) {
-//                foreach($form->questions as $question) {
-//                    $sql = 'INSERT INTO embedded_responses (questionnaire, question, uid, response, apid) VALUES(';
-//                    $sql.= "'" . $this->name . "', ";
-//                    $sql.= "'" . $question->question . "', ";
-//                    $sql.= "'" . $_SESSION['uid'] . "', ";
-//                    $sql.= "'" . db_escape($this->db,$_SESSION[$this->name][$form->form_name][$question->question_name]). "', ";
-//                    $sql.= "'" . $_SESSION['apid'] . "')";
-//                    $result = mysqli_query($this->db, $sql);
-//                    confirm_result_set($result);
-//
-//                }
-//            }
-//        }
-//        else {
-//            foreach ($_SESSION[$this->name]['path'] as $formPosition) {
-//                foreach ($this->forms[$formPosition]->questions as $question) {
-//                    $sql = 'INSERT INTO embedded_responses (questionnaire, question, uid, response, apid) VALUES(';
-//                    $sql.= "'" . $this->name . "', ";
-//                    $sql.= "'" . $question->question . "', ";
-//                    $sql.= "'" . $_SESSION['uid'] . "', ";
-//                    $sql.= "'" . db_escape($this->db,$_SESSION[$this->name][$this->forms[$formPosition]->form_name][$question->question_name]). "', ";
-//                    $sql.= "'" . $_SESSION['apid'] . "')";
-//                    $result = mysqli_query($this->db, $sql);
-//                    confirm_result_set($result);
-//                }
-//            }
-//        }
-        $_SESSION[$this->unlock] = 'Unlocked';
-        redirect_to($this->next);
+        if($this->BranchingLogicDisabled()) {
+            foreach($this->forms as $form) {
+                foreach($form->questions as $question) {
+                    $sql = 'INSERT INTO responses (uid, question, response, appointment_id) VALUES(';
+                    $sql.= "'" . $_SESSION['uid'] . "', ";
+                    $sql.= "'" . $question->question . "', ";
+                    $sql.= "'" . db_escape($this->db,$_SESSION[$this->name][$form->form_name][$question->question_name]). "', ";
+                    $sql.= "'" . $_SESSION['appointment_id'] . "')";
+                    $result = mysqli_query($this->db, $sql);
+                    confirm_result_set($result);
+
+                }
+            }
+        }
+        else {
+            foreach ($_SESSION[$this->name]['path'] as $formPosition) {
+                foreach (($this->forms[$formPosition])->questions as $question) {
+                    $sql = 'INSERT INTO responses (uid, question, response, `appointment_id`) VALUES(';
+                    $sql.= "'" . $_SESSION['uid']  . "', ";
+                    $sql.= "'" . db_escape($this->db, $question->question) . "', ";
+                    $sql.= "'" . db_escape($this->db,$_SESSION[$this->name][$this->forms[$formPosition]->form_name][$question->question_name]). "', ";
+                    $sql.= "'" . $_SESSION['appointment_id']. "')";
+                    $result = mysqli_query($this->db, $sql);
+                }
+            }
+        }
+
+        $sql2 = "UPDATE appointments SET completed = 'Yes', diagnosis ='" . $_SESSION[$this->name]['Dx'] ."', treatment = '" . $_SESSION[$this->name]['Tx'] . "' WHERE id=" . $_SESSION['appointment_id'];
+        $result2 = mysqli_query($this->db, $sql2);
+        confirm_result_set($result2);
+
+        $_SESSION['appointment_completed'] = True;
+        redirect_to("diagnosis.php");
+
     }
 
     //Main Construct function ran every time HTTP REQUEST is made
-    public function __construct($name, $forms, $unlock, $db, $next) {
+    public function __construct($name, $forms, $db) {
 
         //First initialization of the questionnaire
         if(!isset($_SESSION[$name])) {
             $this->name = $name;
             $this->forms = $forms;
-            $this->unlock = $unlock;
             $this->db = $db;
-            $this->next = $next;
             $this->position = 0;
             $_SESSION[$name]['position'] = 0;
             if(!$this->BranchingLogicDisabled()) {
@@ -192,9 +191,7 @@ class Questionnaire
         elseif (isset($_SESSION[$name])) {
             $this->name = $name;
             $this->forms = $forms;
-            $this->unlock = $unlock;
             $this->db = $db;
-            $this->next = $next;
             $this->position = $_SESSION[$name]['position'];
         }
 

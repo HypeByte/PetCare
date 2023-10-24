@@ -13,6 +13,7 @@ require_once private_path . 'server.php';
 require_once private_path . 'validate.php';
 require_once private_path . 'query.php';
 require_once private_path . 'util.php';
+require_once private_path . 'session.php';
 
 $petcare_db = db_connect();
 

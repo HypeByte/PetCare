@@ -220,7 +220,7 @@ $diagnosis = new Questionnaire('diagnosis',
                 ],
                 [
                         new Node('dog-tumors', "Yes"),
-                        new Node('dog-aggresion', "No")
+                        new Node('dog-aggression', "No")
                 ]
         ),
 
@@ -231,12 +231,12 @@ $diagnosis = new Questionnaire('diagnosis',
                 ],
                 [
                         new Node(new DxTx("Cancer", "N/A"), "Yes"),
-                        new Node('dog-aggresion', "No")
+                        new Node('dog-aggression', "No")
                 ]
         ),
 
         new Form(
-                'dog-aggresion',
+                'dog-aggression',
                 [
                         new RadioCheck("Has your dog been more aggressive than usual?", "1", "Yes,No", "RADIO_DEFAULT")
                 ],
@@ -334,11 +334,9 @@ $diagnosis = new Questionnaire('diagnosis',
         ),
 
 
-
     ],
-    'diagnosis',
     $petcare_db,
-    'diagnosis.php');
+    );
 
 ?>
 
