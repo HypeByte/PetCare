@@ -47,3 +47,14 @@ function login_user($user_login): bool
 
 
 }
+
+function getUser_byID($id) {
+
+    global $petcare_db;
+    $sql = "SELECT * FROM users WHERE id='" . db_escape($petcare_db, $id) . "'";
+    $result = mysqli_query($petcare_db,$sql);
+    $user_row = mysqli_fetch_assoc($result);
+
+    return $user_row['username'];
+
+}

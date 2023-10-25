@@ -3,17 +3,19 @@
 require_once "private/init.php";
 global $petcare_db;
 
-require_login();
 
-$appid = $_GET['appid'];
+$appid = $_GET['key'];
 
-$sql = "SELECT * FROM responses WHERE uid = '" . $_SESSION['uid'] . "' AND appointment_id = '" . $appid . "'";
+$sql = "SELECT * FROM responses WHERE appointment_id = '" . $appid . "'";
 $result = mysqli_query($petcare_db, $sql);
 
-$sql2 = "SELECT * FROM appointments WHERE id = '" . $appid . "'";
+$sql2 = "SELECT * FROM appointments WHERE id='" . $appid . "'";
 $result2 = mysqli_query($petcare_db, $sql2);
 $appointment = mysqli_fetch_assoc($result2);
 
+$key = $appointment['share_key'];
+
+$username = getUser_byID($appointment['uid']);
 
 ?>
 
@@ -67,11 +69,8 @@ $appointment = mysqli_fetch_assoc($result2);
 
             <thead>
 
-            <tr align="left">
-                <th colspan="3">
-                    <a class="btn btn-md btn-primary me-1" href="appointments.php">Back</a>
-                    <button class="btn btn-md btn-success" onclick="Share()" >Share</button>
-                </th>
+            <tr>
+                <th colspan="3" class="bg-success"><h2>Username: <?php echo $username; ?></h2></th>
             </tr>
 
             <tr>
@@ -112,14 +111,6 @@ $appointment = mysqli_fetch_assoc($result2);
 
 </div>
 
-<script>
-
-    function Share() {
-        navigator.clipboard.writeText("<?php  echo "pet-care.azurewebsites.net/view?key=" . $key; ?>");
-        alert("Share link copied to clipboard!");
-    }
-
-</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="../private/assets/js/Sidebar-Menu.js"></script>

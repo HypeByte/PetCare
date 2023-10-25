@@ -169,7 +169,7 @@ class Questionnaire
         $result2 = mysqli_query($this->db, $sql2);
         confirm_result_set($result2);
 
-        $_SESSION['appointment_completed'] = True;
+        unset($_SESSION[$this->name]);
         redirect_to("appointments.php");
 
     }
