@@ -14,7 +14,7 @@ $sql2 = "SELECT * FROM appointments WHERE id = '" . $appid . "'";
 $result2 = mysqli_query($petcare_db, $sql2);
 $appointment = mysqli_fetch_assoc($result2);
 
-$key = randomString(10);
+$key = $appointment['share_key'];
 
 ?>
 

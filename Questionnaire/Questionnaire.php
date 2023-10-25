@@ -163,7 +163,9 @@ class Questionnaire
             }
         }
 
-        $sql2 = "UPDATE appointments SET completed = 'Yes', diagnosis ='" . $_SESSION[$this->name]['Dx'] ."', treatment = '" . $_SESSION[$this->name]['Tx'] . "', pet_name='". $_SESSION[$this->name]["petName"]["1"] ."' WHERE id=" . $_SESSION['appointment_id'];
+        $share_key = randomString(10);
+
+        $sql2 = "UPDATE appointments SET completed = 'Yes', diagnosis ='" . $_SESSION[$this->name]['Dx'] ."', treatment = '" . $_SESSION[$this->name]['Tx'] . "', pet_name='". $_SESSION[$this->name]["petName"]["1"] ."', share_key='" . $share_key . "' WHERE id=" . $_SESSION['appointment_id'];
         $result2 = mysqli_query($this->db, $sql2);
         confirm_result_set($result2);
 

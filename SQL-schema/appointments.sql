@@ -5,5 +5,6 @@ CREATE TABLE appointments(
      diagnosis varchar(255),
      treatment varchar(255),
      completed VARCHAR(255),
+     share_key VARCHAR(255)
      PRIMARY KEY (id)
 );
