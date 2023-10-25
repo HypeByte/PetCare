@@ -10,3 +10,9 @@ function start_appointment($uid, $username, $db) {
     $appointment_id = mysqli_insert_id($db);
     $_SESSION['appointment_id'] = $appointment_id;
 }
+
+function require_login() {
+    if(!isset($_SESSION['uid'])) {
+        redirect_to('login.php');
+    }
+}

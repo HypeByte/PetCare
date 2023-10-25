@@ -13,6 +13,8 @@ use Questionnaire\{Questionnaire, Question, Form, RadioCheck, TextBox, Select, C
 
 global $petcare_db;
 
+require_login();
+
 $diagnosis = new Questionnaire('diagnosis',
 
     [

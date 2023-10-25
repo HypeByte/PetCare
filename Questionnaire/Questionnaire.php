@@ -158,16 +158,17 @@ class Questionnaire
                     $sql.= "'" . db_escape($this->db,$_SESSION[$this->name][$this->forms[$formPosition]->form_name][$question->question_name]). "', ";
                     $sql.= "'" . $_SESSION['appointment_id']. "')";
                     $result = mysqli_query($this->db, $sql);
+                    confirm_result_set($result);
                 }
             }
         }
 
-        $sql2 = "UPDATE appointments SET completed = 'Yes', diagnosis ='" . $_SESSION[$this->name]['Dx'] ."', treatment = '" . $_SESSION[$this->name]['Tx'] . "' WHERE id=" . $_SESSION['appointment_id'];
+        $sql2 = "UPDATE appointments SET completed = 'Yes', diagnosis ='" . $_SESSION[$this->name]['Dx'] ."', treatment = '" . $_SESSION[$this->name]['Tx'] . "', pet_name='". $_SESSION[$this->name]["petName"]["1"] ."' WHERE id=" . $_SESSION['appointment_id'];
         $result2 = mysqli_query($this->db, $sql2);
         confirm_result_set($result2);
 
         $_SESSION['appointment_completed'] = True;
-        redirect_to("diagnosis.php");
+        redirect_to("appointments.php");
 
     }
 
