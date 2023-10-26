@@ -19,7 +19,7 @@ function register_user($user_data): array
     confirm_result_set($result);
     $user_id = mysqli_insert_id($petcare_db);
     end_appointment();
-    start_appointment($user_id, $user_data['username'], $petcare_db);
+    start_session($user_id, $user_data['username'], $petcare_db);
     return $errors;
 
 }
@@ -40,7 +40,7 @@ function login_user($user_login): bool
     if($fetched_data) {
         if(password_verify($user_login['password'], $fetched_data['password'])) {
             end_appointment();
-            start_appointment($fetched_data['id'], $fetched_data['username'], $petcare_db);
+            start_session($fetched_data['id'], $fetched_data['username'], $petcare_db);
             return true;
         }
     }

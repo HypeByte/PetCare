@@ -46,7 +46,7 @@ $result = mysqli_query($petcare_db, $sql);
         <div class="container"><a class="navbar-brand d-flex align-items-center text-light"><span>PetCare</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-5">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active text-light" href="index.php"><b>Start Appointment</b></a></li>
+                    <li class="nav-item"><a class="nav-link active text-light" href="survey.php"><b>Start Appointment</b></a></li>
                     <li class="nav-item"><a class="nav-link text-light" href="appointments.php">My Appointments</a></li>
                 </ul><button class="btn btn-primary ms-md-2" role="button" onclick="Signout()" ">Sign Out</button>
             </div>
@@ -78,7 +78,7 @@ $result = mysqli_query($petcare_db, $sql);
                         <?php while($row = mysqli_fetch_assoc($result)): ?>
 
                             <tr>
-                                <td><a target="_blank" href="responses.php?appid=<?php echo $row['id']; ?>">Appointment #<?php echo $row['id']; ?></a></td>
+                                <td><a href="responses.php?appid=<?php echo $row['id']; ?>">Appointment #<?php echo $row['id']; ?></a></td>
                                 <td><?php echo $row['pet_name']; ?></td>
                                 <td><?php echo $row['date']; ?></td>
                             </tr>

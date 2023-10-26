@@ -170,7 +170,8 @@ class Questionnaire
         confirm_result_set($result2);
 
         unset($_SESSION[$this->name]);
-        redirect_to("appointments.php");
+        redirect_to("responses.php?appid=" . $_SESSION['appointment_id']);
+        unset($_SESSION['appointment_id']);
 
     }
 
@@ -188,6 +189,12 @@ class Questionnaire
                 $_SESSION[$this->name]['path'] = array();
                 $_SESSION[$this->name]['nextCount'] = 0;
             }
+
+            $sql = "INSERT INTO appointments (uid) VALUES (" . "'" . $_SESSION['uid'] . "'" . ")";
+            $result = mysqli_query($db, $sql);
+            confirm_result_set($result);
+            $appointment_id = mysqli_insert_id($db);
+            $_SESSION['appointment_id'] = $appointment_id;
 
         }
         //Loads Questionnaire from session storage

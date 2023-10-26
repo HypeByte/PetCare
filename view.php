@@ -49,7 +49,15 @@ $responses = mysqli_query($petcare_db, $sql2);
 </head>
 
 <body>
+<nav class="navbar navbar-flex navbar-dark navbar-expand-md py-3 sticky-top" style="background-color: rgb(12, 72, 102); ">
+    <div class="container"><a class="navbar-brand d-flex align-items-center text-light"><span>PetCare</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-5">
+            <ul class="navbar-nav ms-auto">
 
+            </ul><a class="btn btn-primary ms-md-2" href="login.php">Log in</a>
+        </div>
+    </div>
+</nav>
 
 <div class="container-fluid">
 
