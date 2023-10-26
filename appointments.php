@@ -47,8 +47,8 @@ $result = mysqli_query($petcare_db, $sql);
             <div class="collapse navbar-collapse" id="navcol-5">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active text-light" href="index.php"><b>Start Appointment</b></a></li>
-                    <li class="nav-item"><a class="nav-link text-light" href="about.php">My Appointments</a></li>
-                </ul><a class="btn btn-primary ms-md-2" role="button" href="login/login.php">Sign Out</a>
+                    <li class="nav-item"><a class="nav-link text-light" href="appointments.php">My Appointments</a></li>
+                </ul><button class="btn btn-primary ms-md-2" role="button" onclick="Signout()" ">Sign Out</button>
             </div>
         </div>
     </nav>
@@ -93,6 +93,15 @@ $result = mysqli_query($petcare_db, $sql);
 
     </div>
 
+    <script>
+        function Signout() {
+            let confirm = window.confirm("Are you sure you want to sign out? Please close all tabs of the website you are signed in on if you chose to do so.");
+
+            if(confirm) {
+                window.location.href = "login.php";
+            }
+        }
+    </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="../private/assets/js/Sidebar-Menu.js"></script>

@@ -11,6 +11,14 @@ function start_appointment($uid, $username, $db) {
     $_SESSION['appointment_id'] = $appointment_id;
 }
 
+function end_appointment() {
+    if(isset($_SESSION['uid'])) {
+        unset($_SESSION['uid']);
+        unset($_SESSION['username']);
+        unset($_SESSION['appointment_id']);
+    }
+}
+
 function require_login() {
     if(!isset($_SESSION['uid'])) {
         redirect_to('login.php');

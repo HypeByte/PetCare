@@ -13,7 +13,7 @@
 
     $errors = register_user($_POST);
     if(!$errors['present']) {
-        redirect_to('survey.php');
+        redirect_to('appointments.php');
     }
 
     }

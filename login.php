@@ -6,7 +6,7 @@
     if(is_post_request()) {
         $login_success = login_user($_POST);
         if($login_success) {
-            redirect_to('survey.php');
+            redirect_to('appointments.php');
         } else {
             $error = true;
         }

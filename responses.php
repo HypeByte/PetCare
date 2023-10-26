@@ -55,7 +55,7 @@ $key = $appointment['share_key'];
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link active text-light" href="survey.php"><b>Start Appointment</b></a></li>
                 <li class="nav-item"><a class="nav-link text-light" href="appointments.php">My Appointments</a></li>
-            </ul><a class="btn btn-primary ms-md-2" role="button" href="login.php">Sign Out</a>
+            </ul><button class="btn btn-primary ms-md-2" role="button" onclick="Signout()">Sign Out</button>
         </div>
     </div>
 </nav>
@@ -76,11 +76,14 @@ $key = $appointment['share_key'];
             </tr>
 
             <tr>
-                <th colspan="3" class="bg-warning" ><h3>Diagnosis: <?php echo $appointment['diagnosis']; ?></h3></th>
+                <th colspan="3" class="bg-warning" ><h3>Pet Diagnosis: <?php echo $appointment['diagnosis']; ?></h3></th>
             </tr>
 
-            <tr>
-                <th colspan="3" class="bg-light" ><h3>Treatment: <?php echo $appointment['treatment']; ?></h3></th>
+            <tr  align="left">
+                <th colspan="3" class="bg-light" align="left" >
+                    <h4>Treatment:</h4>
+                    <p><?php echo $appointment['treatment']; ?></p>
+                </th>
             </tr>
 
             <tr>
@@ -116,8 +119,16 @@ $key = $appointment['share_key'];
 <script>
 
     function Share() {
-        navigator.clipboard.writeText("<?php  echo "pet-care.azurewebsites.net/view?key=" . $key; ?>");
+        navigator.clipboard.writeText("<?php  echo "pet-care.azurewebsites.net/view.php?key=" . $key; ?>");
         alert("Share link copied to clipboard!");
+    }
+
+
+    function Signout() {
+        let confirm = window.confirm("Are you sure you want to sign out? Please close all tabs of the website you are signed in on if you chose to do so.");
+        if(confirm) {
+        window.location.href = "login.php";
+        }
     }
 
 </script>
