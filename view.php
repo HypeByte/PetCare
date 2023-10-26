@@ -67,8 +67,11 @@ $responses = mysqli_query($petcare_db, $sql2);
                 <th colspan="3" class="bg-warning" ><h3>Pet Diagnosis: <?php echo $appointment['diagnosis']; ?></h3></th>
             </tr>
 
-            <tr>
-                <th colspan="3" class="bg-light" ><h3>Treatment: <?php echo $appointment['treatment']; ?></h3></th>
+            <tr  align="left">
+                <th colspan="3" class="bg-light" align="left" >
+                    <h4>Treatment:</h4>
+                    <p><?php echo $appointment['treatment']; ?></p>
+                </th>
             </tr>
 
             <tr>
