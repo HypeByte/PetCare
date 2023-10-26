@@ -14,6 +14,7 @@ $sql2 = "SELECT * FROM appointments WHERE id = '" . $appid . "'";
 $result2 = mysqli_query($petcare_db, $sql2);
 $appointment = mysqli_fetch_assoc($result2);
 
+$key = $appointment['share_key'];
 
 ?>
 
@@ -52,9 +53,9 @@ $appointment = mysqli_fetch_assoc($result2);
     <div class="container"><a class="navbar-brand d-flex align-items-center text-light"><span>PetCare</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-5">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link active text-light" href="index.php"><b>Start Appointment</b></a></li>
-                <li class="nav-item"><a class="nav-link text-light" href="about.php">My Appointments</a></li>
-            </ul><a class="btn btn-primary ms-md-2" role="button" href="login/login.php">Sign Out</a>
+                <li class="nav-item"><a class="nav-link active text-light" href="survey.php"><b>Start Appointment</b></a></li>
+                <li class="nav-item"><a class="nav-link text-light" href="appointments.php">My Appointments</a></li>
+            </ul><a class="btn btn-primary ms-md-2" role="button" href="login.php">Sign Out</a>
         </div>
     </div>
 </nav>
