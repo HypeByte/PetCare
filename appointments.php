@@ -104,7 +104,7 @@ $result = mysqli_query($petcare_db, $sql);
         }
 
         function Appointment() {
-            let confirm = window.confirm("Are you sure you want to start an appointment?");
+            let confirm = window.confirm("Are you sure you want to start an appointment? Note: The survey does not work on the public url due to the OpenAI API license, but you can see it in action in the CAC video submitted.");
 
             if(confirm) {
                 window.location.href = "survey.php";

@@ -50,6 +50,7 @@ function login_user($user_login): bool
 
 }
 
+//Returns User Associate array based on database user id
 function getUser_byID($id) {
 
     global $petcare_db;

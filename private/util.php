@@ -17,6 +17,7 @@ function error_style_logo($errors, $field): void
 }
 
 
+//Used for the ShareKey Feature, generates random share_key for the appointment results used in the url
 function randomString($n): string
 {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
