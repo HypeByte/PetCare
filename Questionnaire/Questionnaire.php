@@ -9,6 +9,7 @@ class Questionnaire
     public $forms;
     public $db;
     public $position;
+    public $ai;
 
     //Checks if the current form has branching logic compatibility disabled
     //Requirements: 1 question for a form to be compatible with branching logic and have nodes which describe next form based on the current form response
@@ -135,6 +136,7 @@ class Questionnaire
 
     public function FINISH() {
         $this->SESSION_STORE();
+        $responses = "";
         if($this->BranchingLogicDisabled()) {
             foreach($this->forms as $form) {
                 foreach($form->questions as $question) {
@@ -159,13 +161,29 @@ class Questionnaire
                     $sql.= "'" . $_SESSION['appointment_id']. "')";
                     $result = mysqli_query($this->db, $sql);
                     confirm_result_set($result);
+                    $responses .= "Question Given:" . $question->question . " and User Response was:" . $_SESSION[$this->name][$this->forms[$formPosition]->form_name][$question->question_name] . ", ";
                 }
             }
         }
 
         $share_key = randomString(10);
 
-        $sql2 = "UPDATE appointments SET completed = 'Yes', diagnosis ='" . $_SESSION[$this->name]['Dx'] ."', treatment = '" . $_SESSION[$this->name]['Tx'] . "', pet_name='". $_SESSION[$this->name]["petName"]["1"] ."', share_key='" . $share_key . "' WHERE id=" . $_SESSION['appointment_id'];
+        $ai_prompt = "Given that the diagnosis for the pet of a user is " . $_SESSION[$this->name]['Dx'] . " and the patients responses to the following questions are " . $responses . " give a treatment for the pet and analysis in less than 150 ai tokens.";
+
+        $complete = $this->ai->completion(
+            [
+                'model' => 'text-davinci-003',
+                'prompt' => $ai_prompt,
+                'temperature' => 0.9,
+                'max_tokens' => 150,
+                'frequency_penalty' => 0.0,
+                'presence_penalty' => 0.6
+
+            ]
+        );
+        $complete = json_decode($complete, true);
+
+        $sql2 = "UPDATE appointments SET completed = 'Yes', diagnosis ='" . $_SESSION[$this->name]['Dx'] ."', treatment = '" . db_escape($this->db, $complete['choices']['0']['text']) ."', pet_name='". $_SESSION[$this->name]["petName"]["1"] . "', share_key='" . $share_key . "' WHERE id=" . $_SESSION['appointment_id'];
         $result2 = mysqli_query($this->db, $sql2);
         confirm_result_set($result2);
 
@@ -176,13 +194,14 @@ class Questionnaire
     }
 
     //Main Construct function ran every time HTTP REQUEST is made
-    public function __construct($name, $forms, $db) {
+    public function __construct($name, $forms, $db, $ai) {
 
         //First initialization of the questionnaire
         if(!isset($_SESSION[$name])) {
             $this->name = $name;
             $this->forms = $forms;
             $this->db = $db;
+            $this->ai = $ai;
             $this->position = 0;
             $_SESSION[$name]['position'] = 0;
             if(!$this->BranchingLogicDisabled()) {
@@ -202,6 +221,7 @@ class Questionnaire
             $this->name = $name;
             $this->forms = $forms;
             $this->db = $db;
+            $this->ai = $ai;
             $this->position = $_SESSION[$name]['position'];
         }
 

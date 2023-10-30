@@ -15,6 +15,14 @@ global $petcare_db;
 
 require_login();
 
+require __DIR__ . '/vendor/autoload.php';
+use Orhanerday\OpenAi\OpenAi;
+
+$key = "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";
+
+
+$open_ai = new OpenAi($key);
+
 $diagnosis = new Questionnaire('diagnosis',
 
     [
@@ -338,6 +346,7 @@ $diagnosis = new Questionnaire('diagnosis',
 
     ],
     $petcare_db,
+    $open_ai
     );
 
 ?>

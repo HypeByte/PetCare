@@ -23,7 +23,7 @@ $key = $appointment['share_key'];
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Survey</title>
+    <title>Responses</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="private/assets/css/navbar.css" rel="stylesheet" />
@@ -53,8 +53,9 @@ $key = $appointment['share_key'];
     <div class="container"><a class="navbar-brand d-flex align-items-center text-light"><span>PetCare</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-5">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link active text-light" href="survey.php"><b>Start Appointment</b></a></li>
+                <li class="nav-item"><button class="nav-link active text-light" style="background-color: transparent; border: transparent" onclick="Appointment()"><b>Start Appointment</b></button></li>
                 <li class="nav-item"><a class="nav-link text-light" href="appointments.php">My Appointments</a></li>
+                <li class="nav-item"><a class="nav-link text-light" href="about.php">About</a></li>
             </ul><button class="btn btn-primary ms-md-2" role="button" onclick="Signout()">Sign Out</button>
         </div>
     </div>
@@ -127,7 +128,15 @@ $key = $appointment['share_key'];
     function Signout() {
         let confirm = window.confirm("Are you sure you want to sign out? Please close all tabs of the website you are signed in on if you chose to do so.");
         if(confirm) {
-        window.location.href = "login.php";
+        window.location.href = "index.php";
+        }
+    }
+
+    function Appointment() {
+        let confirm = window.confirm("Are you sure you want to start an appointment?");
+
+        if(confirm) {
+            window.location.href = "survey.php";
         }
     }
 

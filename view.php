@@ -54,7 +54,7 @@ $responses = mysqli_query($petcare_db, $sql2);
         <div class="collapse navbar-collapse" id="navcol-5">
             <ul class="navbar-nav ms-auto">
 
-            </ul><a class="btn btn-primary ms-md-2" href="login.php">Log in</a>
+            </ul><a class="btn btn-primary ms-md-2" href="register.php">Log in</a>
         </div>
     </div>
 </nav>

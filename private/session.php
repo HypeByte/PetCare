@@ -14,6 +14,6 @@ function end_appointment() {
 
 function require_login() {
     if(!isset($_SESSION['uid'])) {
-        redirect_to('login.php');
+        redirect_to('register.php');
     }
 }
