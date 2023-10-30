@@ -62,6 +62,15 @@ require_once 'private/init.php';
 
 </section>
 
+<section class="py-4 py-xl-5" style="background-color: navajowhite">
+    <div class="container">
+        <div class="text-white border rounded border-0 p-4 p-md-5 text-center">
+            <h2 class="fw-bold text-dark mb-3"><b>Purpose/Mission:</b></h2>
+            <h5 class="mb-4 text-dark"><i>PetCare is an app designed to make veterinary healthcare more accessible to everyone and account for underserved communities by serving as an online vet platform where pet owners can take surveys/appointments to get a diagnosis and treatment for their pet.</i></h5>
+        </div>
+    </div>
+</section>
+
 <section class="py-4 py-xl-5 mt-0 pt-0" style="background-color: navajowhite">
      <div class="container">
         <div class=" border rounded border-0 border-dark overflow-hidden">
